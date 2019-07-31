@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="res_partner_form_inherit">
+            <field name="name">res.partner.inherit.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <field name="category_id" position="after">
+                    <field name="zone"       widget="many2many_tags" placeholder="Zones..." />
+                    <group>
+                        <!--<field name="rc"  placeholder="RC..."  attrs="{'invisible': [('is_company','=', False)]}"/>
+			<field name="idfiscal"  placeholder="IF..."  attrs="{'invisible': [('is_company','=', False)]}"/>
+                        <field name="tp"  placeholder="TP..."  attrs="{'invisible': [('is_company','=', False)]}"/>
+                        <field name="ice" placeholder="ICE..." attrs="{'invisible': [('is_company','=', False)]}"/>
+                        <field name="cin" placeholder="CIN..." attrs="{'invisible': [('is_company','=', True)]}"/>  -->
+			
+			<field name="rc"  placeholder="RC..."/>
+			<field name="idfiscal"  placeholder="IF..."/>
+                        <field name="tp"  placeholder="TP..."/>
+                        <field name="ice" placeholder="ICE..."/>
+                        <field name="cin" placeholder="CIN..."/> 
+                    </group>                    
+                </field>
+            </field>
+        </record> 
+
+        <record id="zone_form"    model="ir.ui.view">
+            <field name="name">zone.form</field>
+            <field name="model">res.partner.zone</field>
+            <field name="arch" type="xml">
+                <form>
+                    <field name="name"/>                  
+                   <!--  <field name="secteur_ids"/> -->
+                </form>
+            </field>
+        </record>
+        <record id="zone_tree"    model="ir.ui.view">
+            <field name="name">zone.tree</field>
+            <field name="model">res.partner.zone</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+<!--                         <field name="secteur_ids" /> -->
+                </tree>
+            </field> 
+    </record> 
+    
+        <!-- <record id="secteur_form" model="ir.ui.view">
+            <field name="name">secteur.form</field>
+            <field name="model">res.partner.secteur</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"/>
+                        <field name="zone"/>
+                    </group>
+                    <field name="client_ids">
+                        <tree editable="1"> 
+                            <field name="name"/>
+                            <field name="commercial"/>
+                        
+                        </tree>
+                    </field>
+                </form> 
+            </field>
+        </record>
+        <record id="secteur_tree" model="ir.ui.view">
+            <field name="name">secteur.tree</field>
+            <field name="model">res.partner.secteur</field>
+            <field name="arch" type="xml">
+                <tree >
+                        <field name="name"/>
+                        <field name="zone"/>
+                </tree>
+            </field>
+        </record> --> 
+
+        <record id="action_zone"              model="ir.actions.act_window">
+            <field name="name">Zones </field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner.zone</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!-- <record id="action_secteur"           model="ir.actions.act_window">
+            <field name="name">Secteurs</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner.secteur</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record> -->
+
+        <menuitem name="Zones" id="menu_emplacement" parent="base.menu_base_partner"                   sequence="16" />
+        <menuitem name="Zones"        id="menu_zone"        parent="menu_emplacement" action="action_zone"    sequence="16" />
+        <!-- <menuitem name="Secteurs"     id="menu_secteur"     parent="menu_emplacement" action="action_secteur" sequence="16" /> -->
+        
+    </data>
+</openerp>
